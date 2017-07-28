@@ -2,17 +2,9 @@
 
 exports.handler = (event, context, callback) => {
    const response = event.Records[0].cf.response;
-   const headers = response.headers;
+   const headers = event.Records[0].cf.response.headers;
    
-    
-   const headerHSTSName = "Strict-Transport-Security": 
-   const headerHSTSValue = "max-age=31536000; includeSubDomains"
+   headers['Strict-Transport-Security'] = [{key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains'}];
    
-   headers[headerHSTSName.toLowerCase()] = [
-         headers[headerHSTSValue.toLowerCase()][0],
-      ];
-      console.log(`Response header "${headerHSTSName}" was set to ` +
-               `"${headers[headerHSTSValue.toLowerCase()][0].value}"`);
-   
-   callback(null, response);
+   callback(null, event.Records[0].cf.response);
 };

@@ -6,6 +6,6 @@ exports.handler = (event, context, callback) => {
    
    headers['Strict-Transport-Security'] = [{key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains'}];
    headers['X-Frame-Options'] = [{key: 'X-Frame-Options', value: 'DENY'}];
-   headers['X-Content-Type-Options'] = [{key: 'X-Content-Type-Options', value: 'nosniff}];
+   headers['X-Content-Type-Options'] = [{key: 'X-Content-Type-Options', value: 'nosniff'}];
    callback(null, event.Records[0].cf.response);
 };
